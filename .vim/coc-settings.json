@@ -1,0 +1,17 @@
+{
+    "languageserver": {
+        "purescript": {
+            "command": "./cli.js",
+            "args": ["--stdio"],
+            "filetypes": ["purescript"],
+            "rootPatterns": ["spago.dhall"],
+            "settings": {
+                "purescript": {
+                    "addNpmPath": true,
+                    "addSpagoSources": true,
+                    "buildCommand": "spago build --purs-args '--json-errors'"
+                }
+            }
+        }
+    }
+}
