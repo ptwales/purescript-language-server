@@ -302,10 +302,10 @@ main = do
         when (Config.autoStartPscIde c) $ do
           startPscIdeServer
           let outputDir = Config.effectiveOutputDirectory c
-          hasPackageFile <- or <$> traverse FS.exists ["bower.json", "psc-package.json", "spago.dhall"]
+          hasPackageFile <- or <$> traverse FS.exists ["bower.json", "psc-package.json", "packages.dhall"]
           envIdeSources <- getEnvPursIdeSources
           when (not hasPackageFile && isNothing envIdeSources) do
-            liftEffect $ showError conn "It doesn't look like the workspace root is a PureScript project (has bower.json/psc-package.json/spago.dhall). The PureScript project should be opened as a root workspace folder."
+            liftEffect $ showError conn "It doesn't look like the workspace root is a PureScript project (has bower.json/psc-package.json/packages.dhall). The PureScript project should be opened as a root workspace folder."
           exists <- FS.exists outputDir
           when (not exists) $ liftEffect $ launchAffLog do
             let message = "Output directory does not exist at '" <> outputDir <> "'"
